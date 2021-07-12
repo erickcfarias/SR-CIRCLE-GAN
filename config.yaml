@@ -1,0 +1,39 @@
+# Apparent better results. However got max psnr after 25 iteration, then it degradated below the starting point
+# Maybe LR is too high? D seems to be learning too fast
+
+version_name: 'new_baseline_2x'
+# preprocessing_args
+download: True
+arrange_folders: True
+train: True
+tune: True
+test: True
+delete_download: True
+delete_raw: True
+input_path: raw_data/
+output_path: preprocessed_data/
+input_size_min: 64
+input_size_max: 64
+# training args
+upscale_rate: 2
+noise_prob: 0.3
+noise_mu: 0.0
+noise_sd: 0.25
+blur_prob: 0.3
+scaler: 'sigm'
+epochs: 100
+checkpoint_every: 5
+learning_rate: 0.00005
+ttur_rate: 0.5
+batch_size: 16
+epoch_size: 10000
+hu_scale_min: -100
+hu_scale_max: 400
+validation_loss_weight: 1
+cycle_loss_weight: 1
+identity_loss_weight: .5
+joint_loss_weight: .00001
+supervision_weight: 1
+conditioning: None
+spectral_normalization: False
+generator_output_activation: 'linear'

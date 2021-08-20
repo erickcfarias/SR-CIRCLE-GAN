@@ -1,7 +1,7 @@
 # Apparent better results. However got max psnr after 25 iteration, then it degradated below the starting point
 # Maybe LR is too high? D seems to be learning too fast
 
-version_name: 'new_baseline_2x'
+version_name: 'spp_ablation'
 # preprocessing_args
 download: True
 arrange_folders: True

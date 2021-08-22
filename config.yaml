@@ -1,7 +1,7 @@
 # Apparent better results. However got max psnr after 25 iteration, then it degradated below the starting point
 # Maybe LR is too high? D seems to be learning too fast
 
-version_name: 'spp_ablation'
+version_name: 'baseline_spp'
 # preprocessing_args
 download: True
 arrange_folders: True
@@ -12,8 +12,8 @@ delete_download: True
 delete_raw: True
 input_path: raw_data/
 output_path: preprocessed_data/
-input_size_min: 64
-input_size_max: 64
+input_size_min: 32
+input_size_max: 128
 # training args
 upscale_rate: 2
 noise_prob: 0.3

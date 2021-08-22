@@ -35,7 +35,7 @@ def discriminator(img_shape, spectr_norm=False):
     y = InstanceNormalization(axis=-1, center=True, scale=True)(y)
     y = LeakyReLU(0.1)(y)
 
-    # y = SpatialPyramidPooling2D(bins=[1, 2, 3], data_format='channels_last')(y)
+    y = SpatialPyramidPooling2D(bins=[1, 2, 3], data_format='channels_last')(y)
     y = Dense(1024)(y)
     y = LeakyReLU(0.1)(y)
     output = Dense(1)(y)

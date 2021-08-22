@@ -112,21 +112,19 @@ class ganCIRCLE:
         if not os.path.exists(self.run_folder):
             os.mkdir(self.run_folder)
 
-        if not os.path.exists(os.path.join(self.run_folder, 'plot_model')):
-            os.mkdir(os.path.join(self.run_folder, 'plot_model'))
-
         if not os.path.exists(os.path.join(self.run_folder, 'checkpoints')):
             os.mkdir(os.path.join(self.run_folder, 'checkpoints'))
 
         if not os.path.exists(
-                os.path.join(self.run_folder, 'tensorboard_log')
+                os.path.join(self.run_folder, 'checkpoints/tensorboard_log')
         ):
-            os.mkdir(os.path.join(self.run_folder, 'tensorboard_log'))
+            os.mkdir(os.path.join(self.run_folder, 'checkpoints/tensorboard_log'))
 
     def _build_checkpointer(self):
         # Build Tensorboard Summary Writer
         self.summary_writer = tf.summary.create_file_writer(
-            os.path.join(self.run_folder, 'tensorboard_log'))
+            os.path.join(self.run_folder, 'checkpoints/tensorboard_log')
+        )
         self.summary_writer.set_as_default()
 
         # Instantiate S3 Manager
@@ -486,6 +484,17 @@ class ganCIRCLE:
                                     self.run_folder, 'checkpoints', file
                                 ),
                                 object_name=self.version_name + '/' + file)
+            
+            for file in os.listdir(os.path.join(self.run_folder,
+                                                'checkpoints/tensorboard_log')):
+                self.cloud_manager\
+                    .upload_file(
+                        bucket='thesis-checkpoint',
+                        file_name=os.path.join(
+                                self.run_folder, "checkpoints/tensorboard_log", file
+                            ),
+                        object_name=self.version_name + "/tensorboard_log/" + file
+                    )
 
     def plot_models(self):
         plot_model(self.d_lr, to_file=os.path.join(

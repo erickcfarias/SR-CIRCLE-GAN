@@ -478,7 +478,7 @@ class ganCIRCLE:
             for file in os.listdir(os.path.join(self.run_folder,
                                                 'checkpoints')):
 
-                if not os.path.isdir(file):
+                if os.path.isfile(os.path.join(self.run_folder, 'checkpoints', file)):
                     self.cloud_manager.\
                         upload_file(bucket='thesis-checkpoint',
                                     file_name=os.path.join(
@@ -489,7 +489,7 @@ class ganCIRCLE:
             for file in os.listdir(os.path.join(self.run_folder,
                                                 'checkpoints/tensorboard_log')):
 
-                if not os.path.isdir(file):
+                if os.path.isfile(os.path.join(self.run_folder, 'checkpoints', 'tensorboard_log', file)):
 
                     self.cloud_manager\
                         .upload_file(

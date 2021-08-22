@@ -22,10 +22,10 @@ noise_sd: 0.25
 blur_prob: 0.3
 scaler: 'sigm'
 epochs: 100
-checkpoint_every: 5
+checkpoint_every: 10
 learning_rate: 0.00005
 ttur_rate: 0.5
-batch_size: 16
+batch_size: 4
 epoch_size: 10000
 hu_scale_min: -100
 hu_scale_max: 400

@@ -478,23 +478,27 @@ class ganCIRCLE:
             for file in os.listdir(os.path.join(self.run_folder,
                                                 'checkpoints')):
 
-                self.cloud_manager.\
-                    upload_file(bucket='thesis-checkpoint',
-                                file_name=os.path.join(
-                                    self.run_folder, 'checkpoints', file
-                                ),
-                                object_name=self.version_name + '/' + file)
-            
+                if not os.path.isdir(file):
+                    self.cloud_manager.\
+                        upload_file(bucket='thesis-checkpoint',
+                                    file_name=os.path.join(
+                                        self.run_folder, 'checkpoints', file
+                                    ),
+                                    object_name=self.version_name + '/' + file)
+
             for file in os.listdir(os.path.join(self.run_folder,
                                                 'checkpoints/tensorboard_log')):
-                self.cloud_manager\
-                    .upload_file(
-                        bucket='thesis-checkpoint',
-                        file_name=os.path.join(
-                                self.run_folder, "checkpoints/tensorboard_log", file
-                            ),
-                        object_name=self.version_name + "/tensorboard_log/" + file
-                    )
+
+                if not os.path.isdir(file):
+
+                    self.cloud_manager\
+                        .upload_file(
+                            bucket='thesis-checkpoint',
+                            file_name=os.path.join(
+                                    self.run_folder, "checkpoints/tensorboard_log", file
+                                ),
+                            object_name=self.version_name + "/tensorboard_log/" + file
+                        )
 
     def plot_models(self):
         plot_model(self.d_lr, to_file=os.path.join(

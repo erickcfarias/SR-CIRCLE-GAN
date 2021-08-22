@@ -13,7 +13,7 @@ delete_raw: True
 input_path: raw_data/
 output_path: preprocessed_data/
 input_size_min: 32
-input_size_max: 128
+input_size_max: 96
 # training args
 upscale_rate: 2
 noise_prob: 0.3
